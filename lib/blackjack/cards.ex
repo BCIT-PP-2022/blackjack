@@ -1,6 +1,7 @@
 defmodule Blackjack.Cards do
   use GenServer
 
+  # for multiple rooms, will need to have name reg be based on channel's room number.  for now this is fine
   def start_link() do
     GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
   end
@@ -18,6 +19,7 @@ defmodule Blackjack.Cards do
   end
 
   def new_deck do
+    # 1 = Ace, 11 = Jack, 12 = Queen, 13 = King
     deck =
       for suit <- [:hearts, :diamonds, :spades, :clubs],
           i <- 1..13,
